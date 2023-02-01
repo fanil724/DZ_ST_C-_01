@@ -26,8 +26,7 @@ int main() {
     phBook.ReadFile();
     phBook.PrintPhoneBook();
     std::cout << std::endl;
-    Contact c;
-    c.Search(phBook,phBook.GetSize(),"Dima");
+    std::cout<<phBook.Search( "Sasha");
 
 //Задание №3
 //    SString s(45);

@@ -126,16 +126,7 @@ public:
     }
 
 
-    template<typename T>
-    Contact Search(T *book, size_t &size, const char *names) {
-        Contact name;
-        for (int i = 0; i < size; i++) {
-            if (strcmp(names, book[i].Name_) == 0) {
-                name = book[i];
-            }
-        }
-        return name;
-    };
+
 
     void Show(const char *ch) {
         size_t size = strlen(ch);

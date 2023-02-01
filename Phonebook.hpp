@@ -27,6 +27,16 @@ public:
         phonebook_ = arr;
     }
 
+
+    size_t Search(const char *names) {
+        for (int i = 0; i < size; i++) {
+            if (strcmp(names, phonebook_[i].Name_) == 0) {
+                return i;
+            }
+        }
+        return -1;
+    };
+
     T &operator[](size_t index) {
         return phonebook_[index];
     }
