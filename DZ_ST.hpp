@@ -1,16 +1,18 @@
+#ifndef DZ_ST_H
+#define DZ_ST_H
+
 #include <iostream>
 #include <cstring>
 #include <fstream>
 #include <algorithm>
 
-
-#ifndef DZ_ST_H
-#define DZ_ST_H
-
 //Задание №2
 class Contact {
 public:
-    Contact() {};
+    Contact():Name_{new char[1]{""}},home_phone_{new char[1]{""}},
+    work_phone_{new char[1]{""}},mobile_phone_{new char[1]{""}},
+    contact_information_{new char[1]{""}}
+    {};
 
     Contact(const char *name, const char *home, const char *work, const char *mobile)
             : contact_information_{new char[1]{""}} {
@@ -58,14 +60,14 @@ public:
         contact.contact_information_ = nullptr;
     }
 
-    Contact& operator=(Contact&& contact) noexcept {
+    Contact &operator=(Contact &&contact) noexcept {
         if (this == &contact)
             return *this;
-//        delete[] Name_;
-//        delete[] home_phone_;
-//        delete[] work_phone_;
-//        delete[] mobile_phone_;
-//        delete[] contact_information_;
+        delete[] Name_;
+        delete[] home_phone_;
+        delete[] work_phone_;
+        delete[] mobile_phone_;
+        delete[] contact_information_;
 
         Name_ = contact.Name_;
         home_phone_ = contact.home_phone_;
@@ -82,13 +84,13 @@ public:
         return *this;
     }
 
-//    ~Contact() {
-//        delete[] Name_;
-//        delete[] work_phone_;
-//        delete[] home_phone_;
-//        delete[] mobile_phone_;
-//        delete[] contact_information_;
-//    };
+    ~Contact() {
+        delete[] Name_;
+        delete[] work_phone_;
+        delete[] home_phone_;
+        delete[] mobile_phone_;
+        delete[] contact_information_;
+    };
 
     void sswap(Contact &another) noexcept {
         using std::swap;
@@ -131,8 +133,6 @@ public:
     }
 
 
-
-
     void Show(const char *ch) {
         size_t size = strlen(ch);
         for (size_t i = 0; i < size; i++) {
@@ -166,46 +166,26 @@ public:
     }
 
     Contact Read(std::string s) {
-        Contact c;
-        std::string str = s.substr().erase(s.find(' '));
+        std::string Name = s.substr().erase(s.find(' '));
         s = s.substr(s.find(' ') + 1);
-        const size_t sizeName = str.length() + 1;
-       // delete[] c.Name_;
-        c.Name_ = new char[sizeName];
-        strcpy(c.Name_, str.c_str());
 
-        str = s.substr().erase(s.find(' '));
+        std::string home_phone = s.substr().erase(s.find(' '));
         s = s.substr(s.find(' ') + 1);
-        //delete[] c.home_phone_;
-        const size_t sizeHome = s.length();
-        c.home_phone_ = new char[sizeHome];
-        strcpy(c.home_phone_, str.c_str());
 
-        str = s.substr().erase(s.find(' '));
+        std::string work_phone = s.substr().erase(s.find(' '));
         s = s.substr(s.find(' ') + 1);
-        const size_t sizeWork = s.length();
-        //delete[] c.work_phone_;
-        c.work_phone_ = new char[sizeWork];
-        strcpy(c.work_phone_, str.c_str());
 
-        str = s.substr().erase(s.find(' '));
+        std::string mobile_phone = s.substr().erase(s.find(' '));
         s = s.substr(s.find(' ') + 1);
-        const size_t sizeMobile = s.length();
-        //delete[] c.mobile_phone_;
-        c.mobile_phone_ = new char[sizeMobile];
-        strcpy(c.mobile_phone_, str.c_str());
         if (s.empty()) {
+            Contact c(Name.c_str(), home_phone.c_str(), work_phone.c_str(), mobile_phone.c_str());
             return c;
         }
-        str = s.substr().erase(s.find(' '));
+        std::string contact_information = s.substr().erase(s.find(' '));
         s = s.substr(s.find(' ') + 1);
-        const size_t sizeInfo = s.length();
-        //delete[] c.contact_information_;
-        c.contact_information_ = new char[sizeMobile];
-        strcpy(c.contact_information_, str.c_str());
+        Contact c(Name.c_str(), home_phone.c_str(), work_phone.c_str(), mobile_phone.c_str(),contact_information.c_str());
         return c;
     }
-
 
     [[nodiscard]] inline const char *GetName() {
         return Name_;

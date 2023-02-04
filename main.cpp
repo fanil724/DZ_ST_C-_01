@@ -5,28 +5,28 @@
 
 int main() {
 //задание №1
-//    Fraction f(6, 4);
-//    Fraction Frac(2, 6);
-//    f.Multiplication(Frac);
-//    f.SummFraction(Frac);
-//    f.ShowFraction();
-//    f.reduction();
-//    f.ShowFraction();
+    Fraction f(6, 4);
+    Fraction Frac(2, 6);
+    f.Multiplication(Frac);
+    f.SummFraction(Frac);
+    f.ShowFraction();
+    f.reduction();
+    f.ShowFraction();
 
 //Задание №2
-    PhoneBook<Contact> phBook;
+//    PhoneBook phBook;
 //    phBook.Add(Contact("Dima", "99999", "8945999", "89561299", "kemper"));
 //    phBook.Add(Contact("Dasha", "99999", "8945999", "89561299"));
 //    phBook.Add(Contact("alik", "99999", "8945999", "89561299", "noob"));
 //    phBook.Add(Contact("Sasha", "99999", "8945999", "89561299"));
-
+//
 //    phBook.PrintPhoneBook();
 //    phBook.WritePhonebook();
-
-    phBook.ReadFile();
-    phBook.PrintPhoneBook();
-    std::cout << std::endl;
-    std::cout<<phBook.Search( "Sasha");
+//
+//    phBook.ReadFile();
+//    phBook.PrintPhoneBook();
+//    std::cout << std::endl;
+//    std::cout<<phBook.Search( "Sasha");
 
 //Задание №3
 //    SString s(45);
@@ -35,5 +35,7 @@ int main() {
 //    std::cout << s.GetCount()<<std::endl;
 //    std::cout << str.GetCount()<<std::endl;
 //    s.SetSStrings();
+//    s.ShowString();
+//    s=str;
 //    s.ShowString();
 }

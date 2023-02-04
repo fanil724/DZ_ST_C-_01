@@ -1,11 +1,12 @@
 #include <iostream>
-#include <cstring>
+#include <string>
 
 #ifndef SSTRING_H
 #define SSTRING_H
 //Задание №3
 
 static size_t count_ = 0;
+
 class SString {
 
 public:
@@ -27,6 +28,35 @@ public:
         strcpy_s(string_, size, str);
         coutnSString_ = count_;
         count_++;
+    }
+
+    SString(const SString &another)
+            : SString(another.string_) {}
+
+    SString &operator=(const SString &another) {
+        if (&another == this)
+            return *this;
+
+        SString copy(another);
+        std::swap(string_, copy.string_);
+        return *this;
+    }
+
+    SString(SString &&another) noexcept
+            : string_(std::exchange(another.string_, nullptr)) {}
+
+    SString &operator=(SString &&another) noexcept {
+        if (&another == this)
+            return *this;
+        delete[] string_;
+        string_ = std::exchange(another.string_, nullptr);
+        return *this;
+    }
+
+    char &operator[](size_t index) {
+        if (index >= GetSize())
+            throw std::out_of_range("Index is out of range");
+        return string_[index];
     }
 
     ~SString() {
