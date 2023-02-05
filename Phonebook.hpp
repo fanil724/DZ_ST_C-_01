@@ -8,7 +8,7 @@
 
 class PhoneBook {
 public:
-    PhoneBook() : size(1),
+    PhoneBook() : size(0),
                   phonebook_{new Contact[size]} {}
 
 
